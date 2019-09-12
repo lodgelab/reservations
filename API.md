@@ -12,21 +12,22 @@
  ### Read Listings 
 
  ### URL
- http://localhost:3001/api/dblistings
+ ```
+ /api/listings
+ ```
  ### Method: 
  ```sh
  GET
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
  ### Success Response:
- - Code: 200
- - Content: {
-     id: NULL,
+ - Content:
+ ```javascript
+ {
+     id: 3,
      maxGuests: 8,
      maxInfants: 2, 
      chargePerNight: 291, 
@@ -36,59 +37,55 @@
      rating: 10,
      numberOfRatings: 423
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'listing does not exist' }
- ### Sample Call: 
-
+ ```
 
  ## Read Booked Dates 
  ### URL
- http://localhost:3001/api/dbbookeddates
+ ```
+ /api/listings/:id/booked-dates
+ ```
  ### Method: 
  ```sh
  GET
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
  ### Data Params
  None
  ### Success Response:
- - Code: 200
- - Content: {
-     id: NULL,
+ - Content: 
+  ```javascript
+ {
+     id: 2,
      year: 2019,
      month: 8,
      date: 5,
      listingId: 1
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'booking dates do not exist' }
- ### Sample Call: 
+ ```
 
 
  ## POST
  ### Create Listings 
  
  ### URL
- http://localhost:3001/api/createlistings
+ ```
+ /api/listings
+ ```
  ### Method: 
  ```sh
  POST
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 201
- - Content: {
-     id: NULL,
+ ### Body
+ ``` javascript
+ {
+     id: 5,
      maxGuests: 2,
      maxInfants: 1, 
      chargePerNight: 100, 
@@ -98,59 +95,53 @@
      rating: 6,
      numberOfRatings: 202
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'listing was not created' }
- ### Sample Call: 
+ ```
 
 
  ## Create Booked Dates 
  ### URL
- http://localhost:3001/api/createbookeddates
+ ```
+ /api/listings/:id/booked-dates
+ ```
  ### Method: 
  ```sh
  POST
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 200
- - Content: {
-     id: NULL,
+ ### Body
+ ``` javascript
+ {
+     id: 5,
      year: 2019,
      month: 9,
      date: 10,
      listingId: 2
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'booking dates were not created' }
- ### Sample Call: 
+ ```
 
 
  ## PUT
  ### Update Listings 
 
  ### URL
- http://localhost:3001/api/updatelistings
+ ```
+ /api/listings
+ ```
  ### Method: 
  ```sh
  PUT
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 200
- - Content: {
-     id: NULL,
+ ### Body
+ ``` javascript
+ {
+     id: 10,
      maxGuests: 2,
      maxInfants: 1, 
      chargePerNight: 100, 
@@ -160,82 +151,76 @@
      rating: 8,
      numberOfRatings: 202
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'listing was not updated' }
- ### Sample Call: 
+ ```
 
 
  ## Update Booked Dates 
  ### URL
- http://localhost:3001/api/updatebookeddates
+ ```
+ /api/listings/:id/booked-dates
+ ```
  ### Method: 
  ```sh
  PUT
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 200
- - Content: {
-     id: NULL,
+ ### Body
+ ``` javascript
+ {
+     id: 10,
      year: 2019,
      month: 10,
      date: 15,
      listingId: 2
  }
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'booking dates were not updated' }
- ### Sample Call: 
+ ```
 
 
  ## DELETE
  ### Delete Listings 
 
  ### URL
- http://localhost:3001/api/deletelistings
+```
+ /api/listings
+ ``` 
  ### Method: 
  ```sh
  DELETE
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 200
+ ### Body
+ ``` javascript
+ {
+    listingId: 3,
+ }
+ ```
 
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'listing was not deleted' }
- ### Sample Call: 
 
 
  ## Read Booked Dates 
  ### URL
- http://localhost:3001/api/deletebookeddates
+ ```
+ /api/listings/:id/booked-dates
+ ```
  ### Method: 
  ```sh
  DELETE
  ```
  ### URL Params
  ```sh
- listing id = [integer]
+ listing id = integer
  ```
- ### Data Params
- None
- ### Success Response:
- - Code: 200
-
- ### Error Response: 
- - Code: 404 NOT FOUND
- - Content: { error: 'booking dates were not deleted' }
- ### Sample Call: 
+ ### Body
+ ``` javascript
+ {
+    listingId: 3,
+ }
+ ```
+ 
 
