@@ -15,7 +15,7 @@ const randomListingGenerator = () => {
     serviceFee: serviceFee ? serviceFee : null,
     occupancyFee: occupancyFee ? occupancyFee : null,
     rating: flooredRandomNumber(11),
-    numberOfRatings: flooredRandomNumber(500) + 1,
+    numberOfRatings: flooredRandomNumber(100) + 1,
   };
 };
 

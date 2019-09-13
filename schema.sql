@@ -1,3 +1,31 @@
 DROP DATABASE IF EXISTS reservations;
 
-CREATE DATABASE reservations;
+CREATE DATABASE reservations
+  WITH ENCODING='UTF8'
+  OWNER=Wendy;
+
+
+CREATE TABLE listings (
+  id INTEGER NOT NULL SERIAL,
+  maxGuests SMALLINT NOT NULL,
+  maxInfants SMALLINT NOT NULL,
+  chargePerNight SMALLINT NOT NULL,
+  cleaningFee SMALLINT NOT NULL,
+  serviceFee SMALLINT NOT NULL,
+  occupancyFee SMALLINT NOT NULL,
+  rating SMALLINT NOT NULL,
+  numberOfRatings SMALLINT NOT NULL,
+  PRIMARY KEY(id)
+);
+
+CREATE TABLE bookeddates (
+  id INTEGER NOT NULL SERIAL,
+  year SMALLINT NOT NULL,
+  month SMALLINT NOT NULL,
+  date SMALLINT NOT NULL,
+  listingId INTEGER NOT NULL,
+  PRIMARY KEY(id),
+  FOREIGN KEY(listingId) REFERENCES listings(id)
+);
+
+
