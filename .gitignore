@@ -1,2 +1,6 @@
 /node_modules
 /coverage
+/database/bookeddates_postgres.csv
+/database/bookeddates.csv
+/database/listings_test.csv
+/database/listings.csv
