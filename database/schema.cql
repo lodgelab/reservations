@@ -6,7 +6,7 @@ USE reservations;
 
 CREATE TABLE IF NOT EXISTS listings (
     listingId bigint PRIMARY KEY,
-    maxGuests tinyint,
+    maxGuests smallint,
     maxInfants tinyint,
     chargePerNight smallint,
     cleaningFee tinyint,
