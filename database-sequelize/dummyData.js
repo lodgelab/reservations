@@ -11,9 +11,9 @@ const randomListingGenerator = () => {
     maxGuests: flooredRandomNumber(10) + 1,
     maxInfants: flooredRandomNumber(5),
     chargePerNight: flooredRandomNumber(500) + 1,
-    cleaningFee: cleaningFee ? cleaningFee : null,
-    serviceFee: serviceFee ? serviceFee : null,
-    occupancyFee: occupancyFee ? occupancyFee : null,
+    cleaningFee: cleaningFee,
+    serviceFee: serviceFee,
+    occupancyFee: occupancyFee,
     rating: flooredRandomNumber(11),
     numberOfRatings: flooredRandomNumber(100) + 1,
   };
@@ -23,7 +23,7 @@ const randomBookingGenerator = (listingId) => {
   let dates = [];
 
   for (let j = 8; j < 11; j++) {
-    for (let i = 1; i < 31; i++) {
+    for (let i = 1; i < 10; i++) {
       if (Math.random() > 0.5) {
         dates.push({
           year: 2019,

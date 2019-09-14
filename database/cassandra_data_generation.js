@@ -3,15 +3,14 @@ const fs = require('fs');
 const zlib = require('zlib');
 const gzip = zlib.createGzip();
 
-const wstream = fs.createWriteStream('./listings_test.csv', { encoding: 'utf-8' });
-// const wstream = fs.createWriteStream('./bookeddates.csv', { encoding: 'utf-8' });
-const rstream = fs.createReadStream('./listings.csv');
+const wstream = gzip.createWriteStream('./listings_test.csv.gz', { encoding: 'utf-8' });
+// const wstream = gzip.createWriteStream('./bookeddates.csv.gz', { encoding: 'utf-8' });
 
 
 
 
 async function writeListingsToFile() {
-  for (let i = 1; i <= 100000; i++) {
+  for (let i = 1; i <= 1000; i++) {
     let data = dummyData.randomListingGenerator();
     data = `${i},${data.maxGuests},${data.maxInfants},${data.chargePerNight},${data.cleaningFee},${data.serviceFee},${data.occupancyFee},${data.rating},${data.numberOfRatings}\n`;
     console.log(data);
