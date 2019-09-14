@@ -17,9 +17,10 @@ CREATE TABLE IF NOT EXISTS listings (
 );
 
 CREATE TABLE IF NOT EXISTS bookeddates (
-    listingId bigint PRIMARY KEY,
+    listingId bigint,
     year smallint,
     month tinyint,
-    date tinyint
+    date tinyint,
+    PRIMARY KEY(listingId, month, date)
 );
 

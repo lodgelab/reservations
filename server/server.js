@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const db = require('../database-sequelize/index');
-//import new files 
+const database = require('../database/seed.js');
 
 const port = 3001;
 
@@ -18,7 +18,7 @@ app.use(cors());
 
 app.listen(port);
 
-app.get('/api/dblistings', (req, res) => {
+app.get('/api/listings', (req, res) => {
   db.Listing.findOne({
     where: {
       id: req.query.listing,
@@ -29,7 +29,7 @@ app.get('/api/dblistings', (req, res) => {
     });
 });
 
-app.get('/api/dbbookeddates', (req, res) => {
+app.get('/api/listings/id/booked-dates', (req, res) => {
   db.BookedDate.findAll({
     attributes: ['year', 'month', 'date'],
     where: {
@@ -39,4 +39,16 @@ app.get('/api/dbbookeddates', (req, res) => {
     .then((bookedDates) => {
       res.send(bookedDates);
     });
+});
+
+app.post('/api/listings/id/booked-dates', (req, res) => {
+  //query here
+});
+
+app.put('/api/listings', (req, res) => {
+  
+});
+
+app.delete('/api/listings/id/booked-dates', (req, res) => {
+
 });
