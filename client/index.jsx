@@ -8,16 +8,16 @@ import appActions from './actions/App';
 
 class Reservations extends React.Component {
   componentDidMount() {
-    axios.get('http://localhost:3001/api/dblistings', {
+    axios.get('http://localhost:3001/api/listings', {
       params: {
-        listing: document.URL.split('/').reverse()[1],
+        listing: document.URL.split('/').reverse()[0],
       },
     })
       .then((listing) => {
         store.dispatch(appActions.changeListing(listing.data));
       })
       .then(() => {
-        axios.get('http://localhost:3001/api/dbbookeddates', {
+        axios.get('http://localhost:3001/api/listings/id/booked-dates', {
           params: {
             listing: document.URL.split('/').reverse()[1],
           },
@@ -31,6 +31,69 @@ class Reservations extends React.Component {
       })
       .catch((error) => {
         console.log('error fetching listing data', error);
+      });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  createBookedDate() {
+    axios.post('http://localhost:3001/api/listings/id/booked-dates', {
+      params: {
+        listing: document.URL.split('/').reverse()[1],
+      },
+    })
+      .then((response) => {
+        console.log('successfully created booked date', response);
+      })
+      .catch((error) => {
+        console.log('error creating booked dates', error);
+      });
+  }
+
+  // put (update)
+  // eslint-disable-next-line class-methods-use-this
+  updateListing() {
+    axios.put('http://localhost:3001/api/listings', {
+      params: {
+        listing: document.URL.split('/').reverse()[1],
+        // add another thing here to update for listing
+      },
+    })
+      .then((response) => {
+        console.log('successfully updated listing', response);
+      })
+      .catch((error) => {
+        console.log('error updating listing', error);
+      });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  updateBookedDate() {
+    axios.put('http://localhost:3001/api/listings/id/booked-dates', {
+      params: {
+        listing: document.URL.split('/').reverse()[1],
+      },
+    })
+      .then((response) => {
+        console.log('successfully updated booked date', response);
+      })
+      .catch((error) => {
+        console.log('error updating booked date', error);
+      });
+  }
+
+  // delete (delete)
+  // eslint-disable-next-line class-methods-use-this
+  deleteBookedDate() {
+    axios.delete('http://localhost:3001/api/listings/id/booked-dates', {
+      params: {
+        listing: document.URL.split('/').reverse()[1],
+      },
+    })
+      .then((response) => {
+        console.log('successfully deleted booked date', response);
+      })
+      .catch((error) => {
+        console.log('error deleting booked date', error);
       });
   }
 
