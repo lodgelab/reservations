@@ -1,19 +1,18 @@
 const dummyData = require('../database-sequelize/dummyData.js');
 const fs = require('fs'); 
-const zlib = require('zlib');
-const gzip = zlib.createGzip();
+// const zlib = require('zlib');
+// const wstream = zlib.createGzip();
 
-const wstream = gzip.createWriteStream('./listings_test.csv.gz', { encoding: 'utf-8' });
-// const wstream = gzip.createWriteStream('./bookeddates.csv.gz', { encoding: 'utf-8' });
-
+// wstream.pipe(fs.createWriteStream('./listings_postgres.csv.gz', { encoding: 'utf-8' }));
+const wstream = fs.createWriteStream('./bookeddates_postgres.csv', { encoding: 'utf-8' });
 
 
 
 async function writeListingsToFile() {
-  for (let i = 1; i <= 1000; i++) {
+  for (let i = 1; i <= 10000000; i++) {
+    console.log(i);
     let data = dummyData.randomListingGenerator();
-    data = `${i},${data.maxGuests},${data.maxInfants},${data.chargePerNight},${data.cleaningFee},${data.serviceFee},${data.occupancyFee},${data.rating},${data.numberOfRatings}\n`;
-    console.log(data);
+    data = `${data.maxGuests},${data.maxInfants},${data.chargePerNight},${data.cleaningFee},${data.serviceFee},${data.occupancyFee},${data.rating},${data.numberOfRatings}\n`;
     const ableToWrite = wstream.write(data); 
     if (!ableToWrite) {
       await new Promise(resolve => {
@@ -24,7 +23,16 @@ async function writeListingsToFile() {
       })
     }
   }
-};
+  await new Promise((resolve) => {
+    wstream.end('', () => {
+      resolve();
+    })
+  });
+}
+
+
+
+
 
 async function writeBookingsToFile() {
   // let bookings = [];
@@ -45,12 +53,17 @@ async function writeBookingsToFile() {
       }
     }
   }
+  await new Promise((resolve) => {
+    wstream.end('', () => {
+      resolve();
+    })
+  });
 }
 
 
 
-writeListingsToFile();
-// writeBookingsToFile();
+// writeListingsToFile();
+writeBookingsToFile();
 
 
 

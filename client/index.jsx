@@ -10,16 +10,17 @@ class Reservations extends React.Component {
   componentDidMount() {
     axios.get('http://localhost:3001/api/listings', {
       params: {
-        listing: document.URL.split('/').reverse()[0],
+        listing: document.URL.split('/').reverse()[1],
       },
     })
       .then((listing) => {
         store.dispatch(appActions.changeListing(listing.data));
+        console.log(listing);
       })
       .then(() => {
-        axios.get('http://localhost:3001/api/listings/id/booked-dates', {
+        axios.get('http://localhost:3001/api/listings/booked-dates', {
           params: {
-            listing: document.URL.split('/').reverse()[1],
+            listing: document.URL.split('/').reverse()[0],
           },
         })
           .then((bookedDates) => {
@@ -27,6 +28,7 @@ class Reservations extends React.Component {
               type: 'CHANGE_BOOKED_DATES',
               bookedDates: bookedDates.data,
             });
+            console.log(bookedDates);
           });
       })
       .catch((error) => {
@@ -36,11 +38,13 @@ class Reservations extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   createBookedDate() {
-    axios.post('http://localhost:3001/api/listings/id/booked-dates', {
-      params: {
-        listing: document.URL.split('/').reverse()[1],
-      },
-    })
+    axios.post(`http://localhost:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`, 
+      {
+        listingId: document.URL.split('/').reverse()[0],
+        year: 2019,
+        month: 2,
+        date: 15,
+      })
       .then((response) => {
         console.log('successfully created booked date', response);
       })
@@ -52,12 +56,11 @@ class Reservations extends React.Component {
   // put (update)
   // eslint-disable-next-line class-methods-use-this
   updateListing() {
-    axios.put('http://localhost:3001/api/listings', {
-      params: {
-        listing: document.URL.split('/').reverse()[1],
-        // add another thing here to update for listing
-      },
-    })
+    axios.put(`http://localhost:3001/api/listings/${document.URL.split('/').reverse()[1]}`,
+      {
+        id: 9000000,
+        maxGuests: 5,
+      })
       .then((response) => {
         console.log('successfully updated listing', response);
       })
@@ -66,29 +69,13 @@ class Reservations extends React.Component {
       });
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  updateBookedDate() {
-    axios.put('http://localhost:3001/api/listings/id/booked-dates', {
-      params: {
-        listing: document.URL.split('/').reverse()[1],
-      },
-    })
-      .then((response) => {
-        console.log('successfully updated booked date', response);
-      })
-      .catch((error) => {
-        console.log('error updating booked date', error);
-      });
-  }
-
   // delete (delete)
   // eslint-disable-next-line class-methods-use-this
   deleteBookedDate() {
-    axios.delete('http://localhost:3001/api/listings/id/booked-dates', {
-      params: {
-        listing: document.URL.split('/').reverse()[1],
-      },
-    })
+    axios.delete(`http://localhost:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`,
+      {
+        listingId: 9000000,
+      })
       .then((response) => {
         console.log('successfully deleted booked date', response);
       })

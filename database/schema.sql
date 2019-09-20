@@ -1,6 +1,8 @@
 CREATE DATABASE reservations
   WITH ENCODING='UTF8';
 
+\connect reservations;
+
 CREATE TABLE listings (
   id SERIAL PRIMARY KEY,
   maxGuests SMALLINT,
@@ -15,14 +17,14 @@ CREATE TABLE listings (
 
 CREATE TABLE bookeddates (
   id SERIAL PRIMARY KEY,
-  year SMALLINT NOT NULL,
-  month SMALLINT NOT NULL,
-  date SMALLINT NOT NULL,
-  listingId INTEGER NOT NULL,
+  listingId INTEGER,
+  year SMALLINT,
+  month SMALLINT,
+  date SMALLINT,
   FOREIGN KEY(listingId) REFERENCES listings(id)
 );
 
-CREATE INDEX listingID_idx ON bookeddates (listingId);
+CREATE INDEX listingID_idx ON bookeddates(listingId);
 
 
 
