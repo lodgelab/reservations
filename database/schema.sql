@@ -20,11 +20,15 @@ CREATE TABLE bookeddates (
   listingId INTEGER,
   year SMALLINT,
   month SMALLINT,
-  date SMALLINT,
-  FOREIGN KEY(listingId) REFERENCES listings(id)
+  date SMALLINT
 );
 
-CREATE INDEX listingID_idx ON bookeddates(listingId);
+-- CREATE INDEX listingID_idx ON bookeddates(listingId);
+
+
+
+  -- FOREIGN KEY(listingId) REFERENCES listings(id)
+
 
 
 

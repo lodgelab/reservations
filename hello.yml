@@ -1,0 +1,20 @@
+config:
+  target: 'http://localhost:3001'
+  phases:
+    - duration: 10
+      arrivalRate: 30
+  variables: 
+    id: 
+      - "1"
+  defaults:
+    headers:
+      x-my-service-auth: '987401838271002188298567'
+scenarios:
+  - flow:
+    - post:
+        url: "/api/listings/booked-dates/{{$randomNumber(0, 10000000)}}"
+        json: 
+          listingId: document.URL.split('/').reverse()[0]
+          year: 2019
+          month: 2
+          date: 15

@@ -7,8 +7,8 @@ const wstream = zlib.createGzip();
 
 client.connect(); 
 
-wstream.pipe(fs.createWriteStream('./listings_postgres.csv.gz', { encoding: 'utf-8' }));
-// wstream.pipe(fs.createWriteStream('./bookeddates_postgres_test.csv.gz', { encoding: 'utf-8' }));
+// wstream.pipe(fs.createWriteStream('./listings_postgres.csv.gz', { encoding: 'utf-8' }));
+wstream.pipe(fs.createWriteStream('./bookeddates_postgres_test.csv.gz', { encoding: 'utf-8' }));
 
 async function generateListings() {
   for (let i = 1; i <= 10000000; i++) {
@@ -49,8 +49,8 @@ async function generateBookedDates() {
 
 
 
-generateListings();
-// generateBookedDates();
+// generateListings();
+generateBookedDates();
 
 
 

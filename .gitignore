@@ -4,3 +4,15 @@
 /database/bookeddates.csv
 /database/listings_test.csv
 /database/listings.csv
+newrelic.js
+wendywu09-key-pair-uswest.pem
+/database/index.js
+service-key-pair-uswest.pem
+newrelic_agent.log
+/database/bookeddates.csv.gz
+/database/listings.csv.gz
+/database/listings_postgres.csv.gz
+/public/bundle.js
+package-lock.json
+package.json
+database/bookeddates_postgres_test.csv.gz

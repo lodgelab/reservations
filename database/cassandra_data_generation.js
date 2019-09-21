@@ -1,10 +1,10 @@
 const dummyData = require('../database-sequelize/dummyData.js');
 const fs = require('fs'); 
-// const zlib = require('zlib');
-// const wstream = zlib.createGzip();
+const zlib = require('zlib');
+const wstream = zlib.createGzip();
 
 // wstream.pipe(fs.createWriteStream('./listings_postgres.csv.gz', { encoding: 'utf-8' }));
-const wstream = fs.createWriteStream('./bookeddates_postgres.csv', { encoding: 'utf-8' });
+wstream.pipe = fs.createWriteStream('./bookeddates_postgres.csv.gz', { encoding: 'utf-8' });
 
 
 
