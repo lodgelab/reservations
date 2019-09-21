@@ -8,7 +8,7 @@ import appActions from './actions/App';
 
 class Reservations extends React.Component {
   componentDidMount() {
-    axios.get('http://localhost:3001/api/listings', {
+    axios.get('http://52.53.165.30:3001/api/listings', {
       params: {
         listing: document.URL.split('/').reverse()[1],
       },
@@ -18,7 +18,7 @@ class Reservations extends React.Component {
         console.log(listing);
       })
       .then(() => {
-        axios.get('http://localhost:3001/api/listings/booked-dates', {
+        axios.get('http://52.53.165.30:3001/api/listings/booked-dates', {
           params: {
             listing: document.URL.split('/').reverse()[0],
           },
@@ -38,7 +38,7 @@ class Reservations extends React.Component {
 
   // eslint-disable-next-line class-methods-use-this
   createBookedDate() {
-    axios.post(`http://localhost:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`, 
+    axios.post(`http://52.53.165.30:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`, 
       {
         listingId: document.URL.split('/').reverse()[0],
         year: 2019,
@@ -56,7 +56,7 @@ class Reservations extends React.Component {
   // put (update)
   // eslint-disable-next-line class-methods-use-this
   updateListing() {
-    axios.put(`http://localhost:3001/api/listings/${document.URL.split('/').reverse()[1]}`,
+    axios.put(`http://52.53.165.30:3001/api/listings/${document.URL.split('/').reverse()[1]}`,
       {
         id: 9000000,
         maxGuests: 5,
@@ -72,7 +72,7 @@ class Reservations extends React.Component {
   // delete (delete)
   // eslint-disable-next-line class-methods-use-this
   deleteBookedDate() {
-    axios.delete(`http://localhost:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`,
+    axios.delete(`http://52.53.165.30:3001/api/listings/booked-dates/${document.URL.split('/').reverse()[0]}`,
       {
         listingId: 9000000,
       })
