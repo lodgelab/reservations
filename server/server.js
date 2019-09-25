@@ -19,18 +19,30 @@ app.use(express.static('public'));
 
 
 app.get('/api/listings', (req, res) => {
-  const id = req.params.listing;
-  db.queryMethod(`SELECT * FROM listings WHERE id = ${id}`, (err, data) => {
+  const id = req.query.listing;
+  db.queryMethod(`SELECT * FROM listings WHERE id = ${id}`, (err, response) => {
     if (err) {
       throw err;
     } else {
-      res.send(data.rows);
+      response = response.rows[0];
+      let dataObj = {
+        id: response.id,
+        maxGuests: response.maxguests,
+        maxInfants: response.maxinfants,
+        chargePerNight: response.chargepernight,
+        cleaningFee: response.cleaningfee,
+        serviceFee: response.servicefee,
+        occupancyFee: response.occupancyfee,
+        rating: response.rating,
+        numberOfRatings: response.numberofratings,
+      };
+      res.send(dataObj);  
     }
   });
 });
 
-app.get('/api/listings/booked-dates/:listing', (req, res) => {
-  const id = req.params.listing;
+app.get('/api/bookeddates', (req, res) => {
+  const id = req.query.listing;
   db.queryMethod(`SELECT year, month, date FROM bookeddates WHERE listingid = ${id}`, (err, data) => {
     if (err) {
       throw err;
@@ -40,8 +52,8 @@ app.get('/api/listings/booked-dates/:listing', (req, res) => {
   });
 });
 
-app.post('/api/listings/booked-dates/:listing', (req, res) => {
-  const id = req.params.listing;
+app.post('/api/bookeddates', (req, res) => {
+  const id = req.query.listing;
   db.queryMethod(`INSERT INTO bookeddates(listingId, year, month, date) VALUES(${id}, ${req.body.year}, ${req.body.month}, ${req.body.date})`, (err, data) => {
     if (err) {
       throw err;
@@ -51,8 +63,8 @@ app.post('/api/listings/booked-dates/:listing', (req, res) => {
   });
 });
 
-app.put('/api/listings/:listing', (req, res) => {
-  const id = req.params.listing;
+app.put('/api/listings', (req, res) => {
+  const id = req.query.listing;
   db.queryMethod(`UPDATE listings SET maxguests = ${req.body.maxGuests} WHERE id = ${req.body.id}`, (err, data) => {
     if (err) {
       throw err;
@@ -63,8 +75,8 @@ app.put('/api/listings/:listing', (req, res) => {
 });
 
 
-app.delete('/api/listings/booked-dates/:listing', (req, res) => {
-  const id = req.params.listing;
+app.delete('/api/bookeddates', (req, res) => {
+  const id = req.query.listing;
   db.queryMethod(`DELETE FROM bookeddates WHERE listingId = ${req.body.listingId}`, (err, data) => {
     if (err) {
       throw err;
