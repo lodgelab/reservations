@@ -15,9 +15,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use('/listings/:listing', express.static('public'));
+app.use(express.static('public'));
 
 
-app.get('/api/listings/:listing', (req, res) => {
+app.get('/api/listings', (req, res) => {
   const id = req.params.listing;
   db.queryMethod(`SELECT * FROM listings WHERE id = ${id}`, (err, data) => {
     if (err) {

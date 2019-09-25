@@ -23,7 +23,7 @@ CREATE TABLE bookeddates (
   date SMALLINT
 );
 
--- CREATE INDEX listingID_idx ON bookeddates(listingId);
+CREATE INDEX listingID_idx ON bookeddates(listingId);
 
 
 

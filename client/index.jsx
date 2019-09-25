@@ -14,7 +14,7 @@ class Reservations extends React.Component {
       },
     })
       .then((listing) => {
-        store.dispatch(appActions.changeListing(listing.data));
+        store.dispatch(appActions.changeListing(listing.data[0]));
         console.log(listing);
       })
       .then(() => {

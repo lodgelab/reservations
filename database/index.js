@@ -1,11 +1,7 @@
 const { Pool } = require('pg');
+const config = require('./index.config.js');
 
-const pool = new Pool({
-  user: 'Wendy',
-  host: 'localhost',
-  database: 'reservations',
-  password: '',
-});
+const pool = new Pool(config);
 
 function queryMethod(query, callback) {
   pool.query(query, (err, res) => {
@@ -19,4 +15,5 @@ function queryMethod(query, callback) {
 
 module.exports = {
   queryMethod,
+  pool,
 };
