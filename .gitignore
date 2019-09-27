@@ -16,3 +16,4 @@ package-lock.json
 package.json
 database/bookeddates_postgres_test.csv.gz
 database/index.config.js
+database-redis/index.config.js
