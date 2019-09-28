@@ -17,3 +17,6 @@ package.json
 database/bookeddates_postgres_test.csv.gz
 database/index.config.js
 database-redis/index.config.js
+/database/CSV files
+database/CSV files
+loaderio-8f0fec2ebf3d443c34a1e61996faee8c.txt

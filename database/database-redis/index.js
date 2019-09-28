@@ -1,5 +1,5 @@
 var redis = require(‘redis’);
-const details = require('./index.config.js');
+const details = require('./index.config.js.js');
 
 var redisHost = details.host;
 var redisPort = details.port;
