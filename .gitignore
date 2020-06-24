@@ -1,4 +1,5 @@
 /node_modules
+node_modules/eslint-config-hackreactor
 /coverage
 /database/bookeddates_postgres.csv
 /database/bookeddates.csv
